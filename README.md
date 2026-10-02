@@ -40,32 +40,6 @@ cells count real ones?
 - **Demonstration** — training a U-Net on simulated data only, and counting real cells with it.
 - **Interactive wrap-up** — which simulation choices matter most for simulated-to-real transfer.
 
-## Schedule
-
-| Time | Activity |
-|---|---|
-| 15 min | Introduction: scatterers, optics, noise, and the DeepTrack2 pipeline |
-| 50 min | Live-coded demo and hands-on session |
-| 10 min | Interactive data collection and wrap-up discussion |
-
-## Notebooks
-
-| Notebook | Contents |
-|---|---|
-| [`CW20_Guigo_SPAOM2026.ipynb`](CW20_Guigo_SPAOM2026.ipynb) | The main workshop notebook: simulating images, cells, bacteria and synapses. |
-| [`UNet-train.ipynb`](UNet-train.ipynb) | Optional companion: trains a U-Net on the simulated cells and counts real ones. Not covered live, as it takes longer than the session allows. |
-
-## Software
-
-| Package | Purpose |
-|---|---|
-| [DeepTrack2](https://github.com/DeepTrackAI/DeepTrack2) | Physics-informed simulation of microscopy images |
-| [deeplay](https://github.com/DeepTrackAI/deeplay) | Deep-learning models, used for the U-Net |
-| [PyTorch](https://pytorch.org) | Neural-network backend |
-| [NumPy](https://numpy.org) · [SciPy](https://scipy.org) | Numerical and image-processing routines |
-| [scikit-image](https://scikit-image.org) | Masks, morphology and connected components |
-| [Matplotlib](https://matplotlib.org) | Figures |
-
 ## Installation
 
 Requires **Python 3.10 or newer** and **git** (the cell notebook clones a public dataset).
