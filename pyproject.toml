@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spaom-cw20-deeptrack"
+version = "1.0.0"
+description = "A Hands-on Introduction to BioImage Simulation with DeepTrack2 (SPAOM 2026, workshop CW20)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Guillem Guigó" }]
+keywords = ["deeptrack", "microscopy", "image-simulation", "deep-learning"]
+
+# DeepTrack2 and deeplay bring in most of the scientific stack between them:
+#   deeptrack -> numpy, scipy, matplotlib, scikit-image, pandas, pint, tqdm, ...
+#   deeplay   -> torch (via lightning), torchvision, torchmetrics, lightning, ...
+# Only packages the notebook imports directly, or needs to run at all, are
+# listed again below, so that the notebook does not rely on transitive
+# dependencies that either library could drop in a future release.
+dependencies = [
+    "deeptrack>=2.0",
+    "deeplay>=0.1",
+    "numpy<2.0",        # Required by deeplay; stated here to fail early, not at import time.
+    "torch>=2.0",
+    "matplotlib>=3.6",
+    "scipy>=1.9",
+    "scikit-image>=0.20",
+    "pillow>=9",        # `from PIL import Image`, when loading the BBBC039 images.
+    "ipykernel>=6",     # Runs the notebook in VS Code or Jupyter.
+    "ipywidgets>=8",    # Training progress bars.
+]
+
+[project.optional-dependencies]
+# Only needed to open the notebook in a browser instead of an IDE.
+jupyter = ["jupyterlab>=4"]
+
+[project.urls]
+Homepage = "https://github.com/DeepTrackAI/DeepTrack2"
+
+# The repository holds a notebook rather than an importable package, so there is
+# nothing for setuptools to discover.
+[tool.setuptools]
+py-modules = []

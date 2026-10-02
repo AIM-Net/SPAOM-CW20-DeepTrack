@@ -1,29 +1,77 @@
+> [!NOTE]
+> This repository is still being prepared for SPAOM 2026. Notebook links will be
+> distributed before the workshop.
+
 # A Hands-on Introduction to BioImage Simulation with DeepTrack2
 
-Materials for **workshop CW20** at **SPAOM 2026**.
+**Community workshop CW20 — [SPAOM 2026](https://spaom2026.org)**
+
+Guillem Guigó · Universitat de Vic – Universitat Central de Catalunya
+
+Part of the activities of AIM-Net (RED2024-153844-T, funded by MICIU/AEI/10.13039/501100011033).
+
+## Before the workshop
+
+Please follow the [installation instructions](#installation) **before** attending, and check
+that the first notebook runs end to end. No GPU is needed: everything is designed to run on a
+laptop CPU within the session. If you would rather not install anything, the notebooks also run
+on Google Colab.
+
+## Workshop overview
 
 Training a deep-learning model to detect, classify or count objects in microscopy images usually
-starts with the slowest and most expensive step: manually annotating real data. This workshop takes a
-different route, using [DeepTrack2](https://github.com/DeepTrackAI/DeepTrack2) to simulate microscopy
-images from physical principles, with exact ground truth and no manual annotation at all.
+starts with the slowest and most expensive step: manually annotating real data. This workshop
+takes a different route, using [DeepTrack2](https://github.com/DeepTrackAI/DeepTrack2) to
+**simulate** microscopy images from first principles. Because the images are generated rather than
+collected, their ground truth is known exactly and no manual annotation is needed at all.
 
-Everything lives in a single notebook, [`CW20_Guigo_SPAOM2026.ipynb`](CW20_Guigo_SPAOM2026.ipynb):
+We build a complete pipeline from the ground up — **scatterer → optics → noise → image + ground
+truth** — and then reuse it, almost unchanged, across increasingly complex samples: diffusing
+single molecules, stained cell nuclei, bacteria, and two-color confocal images of synapses. We
+close by asking the question that matters in practice: can a network trained only on simulated
+cells count real ones?
 
-1. **Simulating images** — point particles, noise, Brownian dynamics, scatterers and the five imaging modalities.
-2. **Simulating cells** — realistic fluorescent nuclei with their ground-truth masks.
-3. **Training a U-Net to count cells** — trained only on simulated data, evaluated on the real [BBBC039](https://bbbc.broadinstitute.org/BBBC039) dataset.
-4. **Going further** — two-color confocal synapses, a custom scatterer for bacteria, and custom textures for electron microscopy.
-5. **Discussion** — which simulation choices matter, and when simulated data is a reasonable substitute for annotated data.
+## Contents of the workshop
 
-This community workshop is part of the activities of AIM-Net (RED2024-153844-T, funded by
-MICIU/AEI/10.13039/501100011033).
+- **Introduction** — what a scatterer is, how an optical system turns a physical object into an
+  image, and why simulated noise matters.
+- **Hands-on simulation** — point particles, noise, Brownian dynamics, imaging modalities.
+- **Hands-on objects** — cells, bacteria and synapses, including writing your own scatterer.
+- **Demonstration** — training a U-Net on simulated data only, and counting real cells with it.
+- **Interactive wrap-up** — which simulation choices matter most for simulated-to-real transfer.
 
-## Setup
+## Schedule
 
-Requires **Python 3.10 or newer** and **git** (the notebook clones the cell-counting dataset).
+| Time | Activity |
+|---|---|
+| 15 min | Introduction: scatterers, optics, noise, and the DeepTrack2 pipeline |
+| 50 min | Live-coded demo and hands-on session |
+| 10 min | Interactive data collection and wrap-up discussion |
+
+## Notebooks
+
+| Notebook | Contents |
+|---|---|
+| [`CW20_Guigo_SPAOM2026.ipynb`](CW20_Guigo_SPAOM2026.ipynb) | The main workshop notebook: simulating images, cells, bacteria and synapses. |
+| [`UNet-train.ipynb`](UNet-train.ipynb) | Optional companion: trains a U-Net on the simulated cells and counts real ones. Not covered live, as it takes longer than the session allows. |
+
+## Software
+
+| Package | Purpose |
+|---|---|
+| [DeepTrack2](https://github.com/DeepTrackAI/DeepTrack2) | Physics-informed simulation of microscopy images |
+| [deeplay](https://github.com/DeepTrackAI/deeplay) | Deep-learning models, used for the U-Net |
+| [PyTorch](https://pytorch.org) | Neural-network backend |
+| [NumPy](https://numpy.org) · [SciPy](https://scipy.org) | Numerical and image-processing routines |
+| [scikit-image](https://scikit-image.org) | Masks, morphology and connected components |
+| [Matplotlib](https://matplotlib.org) | Figures |
+
+## Installation
+
+Requires **Python 3.10 or newer** and **git** (the cell notebook clones a public dataset).
 
 ```bash
-git clone https://github.com/<your-user>/SPAOM-CW20-DeepTrack.git
+git clone https://github.com/AIM-Net/SPAOM-CW20-DeepTrack.git
 cd SPAOM-CW20-DeepTrack
 
 # Create and activate an environment (conda shown here; venv works just as well).
@@ -34,27 +82,34 @@ conda activate deeptrack2
 pip install -e .
 ```
 
-`pip install -e .` installs DeepTrack2, deeplay and everything the notebook needs, including the
-Jupyter kernel. To open the notebook in a browser rather than in an IDE, install the extra:
+This installs DeepTrack2, deeplay and everything the notebooks need, including the Jupyter
+kernel. In VS Code, open a notebook and select the `deeptrack2` environment as the kernel. To
+work in a browser instead:
 
 ```bash
 pip install -e ".[jupyter]"
 jupyter lab
 ```
 
-In VS Code, open the notebook and select the `deeptrack2` environment as the kernel.
-
 ### Google Colab / Kaggle
 
-No setup is needed. Open the notebook and uncomment the first code cell:
+No installation needed. Open the notebook with the badge below and uncomment the first code cell
+(`!pip install deeptrack deeplay`).
 
-```python
-!pip install deeptrack deeplay
-```
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AIM-Net/SPAOM-CW20-DeepTrack/blob/main/CW20_Guigo_SPAOM2026.ipynb)
 
-## Notes
+## Practical requirements
 
-- Section 3 trains a small U-Net on simulated data. It runs on a laptop CPU within the session, and
-  is considerably faster on a GPU.
-- Section 2 downloads the [cell counting dataset](https://github.com/DeepTrackAI/cell_counting_dataset)
-  into the working directory the first time it runs.
+- Laptop. No GPU required.
+- **Basic familiarity with Python**: variables, functions, and running a Jupyter notebook.
+- **No prior deep-learning or image-processing background** is needed.
+- Laptops can be shared in pairs or trios for anyone without one.
+
+## Acknowledgements
+
+The confocal image of neuronal synapses in the main notebook is courtesy of Mercè
+Izquierdo-Serra (Universitat de Barcelona).
+
+## License
+
+The course materials are released under the MIT License.
