@@ -1,0 +1,28 @@
+# Dataset cloned by the notebooks (BBBC039 images and masks)
+cell_counting_dataset/
+
+# Training logs and checkpoints (U-Net in UNet-train.ipynb)
+lightning_logs/
+checkpoints/
+*.ckpt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
