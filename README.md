@@ -7,6 +7,7 @@
 **Community workshop CW20 — [SPAOM 2026](https://spaom2026.org)**
 
 Material for the community workshop at **SPAOM 2026** (6–9 October 2026).
+
 Instructors: Guillem Guigó & Carlo Manzo · Universitat de Vic – Universitat Central de Catalunya
 
 
