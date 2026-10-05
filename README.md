@@ -2,13 +2,14 @@
 > This repository is still being prepared for SPAOM 2026. Notebook links will be
 > distributed before the workshop.
 
-# A Hands-on Introduction to BioImage Simulation with DeepTrack2
+# SPAOM-CW20: A Hands-on Introduction to BioImage Simulation with DeepTrack2
 
 **Community workshop CW20 — [SPAOM 2026](https://spaom2026.org)**
 
-Guillem Guigó · Universitat de Vic – Universitat Central de Catalunya
+Material for the community workshop at **SPAOM 2026** (6–9 October 2026).
 
-Part of the activities of AIM-Net (RED2024-153844-T, funded by MICIU/AEI/10.13039/501100011033).
+Instructors: Guillem Guigó & Carlo Manzo · Universitat de Vic – Universitat Central de Catalunya
+
 
 ## Before the workshop
 
@@ -83,6 +84,9 @@ No installation needed. Open the notebook with the badge below and uncomment the
 
 The confocal image of neuronal synapses in the main notebook is courtesy of Mercè
 Izquierdo-Serra (Universitat de Barcelona).
+
+This community workshop is part of the activities of AIM-Net (RED2024-153844-T, funded by MICIU/AEI/10.13039/501100011033).
+
 
 ## License
 
